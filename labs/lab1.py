@@ -1,13 +1,11 @@
 import math
-
 def task1():
-  x = float(input())
-  y = float(input())
-  z = float(input())
+  x = float(input("x: "))
+  y = float(input("y: "))
+  z = float(input("z: "))
   
-  a = (sqrt(abs(x**0.5)))-sinh(y))/(1 + ln(x) - cosh(y))
-  b = 2*sin(x) + (sqrt(1 + ln(z))
-                  
-  print(a, b)
-  
+  a = (math.sqrt(abs(x**0.5)))-(math.sinh(y))/(1 + math.log(x) - math.cosh(y))
+  b = 2*math.sin(x) + (math.sqrt(1 + math.log(z)))
+
+  print(a,b)
 task1()
