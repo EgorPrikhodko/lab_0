@@ -15,3 +15,9 @@ def task2():
   f = ((c*(x**3)+x)/(b*(x**2)))+((x**2)**(1/3))
   print(f)
 task2()
+
+def task3():
+    x = float(input("x: "))
+    f = ((abs(math.log((math.cosh(x**2)), 3)))/(math.sinh((x**2)+(x**1/2))))
+    print(f)
+task3()
