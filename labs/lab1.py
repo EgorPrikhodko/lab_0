@@ -9,3 +9,10 @@ def task1():
 
   print(a,b)
 task1()
+def task2():
+  b = -1
+  c = 2
+  x = float(input("x: "))
+  f = ((c*(x**3)+x)/(b*(x**2)))+((x**2)**(1/3))
+  print(f)
+task2()
