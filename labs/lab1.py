@@ -21,3 +21,12 @@ def task3():
     f = ((abs(math.log((math.cosh(x**2)), 3)))/(math.sinh((x**2)+(x**1/2))))
     print(f)
 task3()
+
+def task4():
+    m = float(input("Длина образующей: "))
+    R = float(input("Длина радиуса: "))
+    r = float(input("радиус: "))
+    h = (m**2-(R-r))**1/2
+    print("Длина высоты: ",h)
+
+task4()
