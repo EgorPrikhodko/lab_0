@@ -30,3 +30,12 @@ def task4():
     print("Длина высоты: ",h)
 
 task4()
+
+def task5():
+    m1 = float(input("Масса 1 тележки: "))
+    u1 = float(input("Скорость 1 тележки:"))
+    m2 = float(input("Масса 2 тележки:"))
+    u2 = float(input("Скорость 2 тележки:"))
+    f = m1*u1+m2*u2
+    print(f)
+task5()
