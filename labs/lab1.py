@@ -59,6 +59,16 @@ def task5():
 
 
 task5()
+def task6():
+    a = float(input("Введите 1 корень уравнения: "))
+    b = float(input("Введите 2 корень уравнения: "))
+    g = a * b
+    p = -(a + b)
+    print(f"Уравнение имеет вид x^2+{p}x+{g}")
+
+
+task6()
+
 
 def task7():
     a = float(input("-10 =< A =< 10 and A != 0: "))
