@@ -88,3 +88,12 @@ def task7():
 
 task7()
 
+def task9():
+    credit = float(input("Сумма кредита: "))
+    years = float(input("на сколько лет кредит: "))
+    rate = float(input("процент кредита: "))
+    sumCredit = credit * (((rate/100)  + 1) + years)
+    print("Итоговая сумма: ",sumCredit)
+
+task9()
+
