@@ -27,25 +27,25 @@ def task1():
 
 task1()
 
-import numpy as np
-import matplotlib.pyplot as pl
 def task2():
-    def f1(x):
-        return np.sin(x)*np.cos(x)
-    def f2(x):
-        return 2*x**2+x
-    a = (int(input("a: ")))
-    b = (int(input("b: ")))
-    x = np.linspace(a, b, 200)
-    y = []
-    for elem in x:
-        if elem >= 0:
-            y.append(f1(elem))
-        else:
-            y.append(f2(elem))
-    pl.plot(x,y)
-    pl.grid()
-    pl.show()
+    import numpy as np
+    import matplotlib.pyplot as pl
+        def f1(x):
+            return np.sin(x)*np.cos(x)
+        def f2(x):
+            return 2*x**2+x
+        a = (int(input("a: ")))
+        b = (int(input("b: ")))
+        x = np.linspace(a, b, 200)
+        y = []
+        for elem in x:
+            if elem >= 0:
+                y.append(f1(elem))
+            else:
+                y.append(f2(elem))
+        pl.plot(x,y)
+        pl.grid()
+        pl.show()
 
 task2()
 
@@ -90,7 +90,7 @@ def task3():
 
 task3()
 
-def task4():
+def task5():
     try:
         a = int(input("Введите первое число: "))
     except ValueError:
@@ -119,9 +119,9 @@ def task4():
     else:
         print("Сумма нечетная")
 
-task4()
+task5()
 
-def task5():
+def task6():
     try:
         a = int(input("Введите количество бактерий:"))
     except ValueError:
@@ -138,4 +138,4 @@ def task5():
         print("Количество бактерий: ",a2)
         a1 = a2
 
-task5()
+task6()
