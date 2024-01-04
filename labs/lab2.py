@@ -79,3 +79,22 @@ def task4():
         print("Сумма нечетная")
 
 task4()
+
+def task5():
+    try:
+        a = int(input("Введите количество бактерий:"))
+    except ValueError:
+        a = int(input("Введите число:"))
+    try:
+        b = int(input("Введите время деления: "))
+    except ValueError:
+        b = int(input("Введите число: "))
+
+    a1 = a
+
+    for i in range(1,b):
+        a2 = a1*2
+        print("Количество бактерий: ",a2)
+        a1 = a2
+
+task5()
