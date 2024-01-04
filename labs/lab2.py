@@ -48,3 +48,34 @@ def task2():
     pl.show()
 
 task2()
+
+def task4():
+    try:
+        a = int(input("Введите первое число: "))
+    except ValueError:
+        a = int(input("Введите первое ЧИСЛО: "))
+    try:
+        b = int(input("Введите второе число: "))
+    except ValueError:
+        b = int(input("Введите второе ЧИСЛО: "))
+    try:
+        c = int(input("Введите третье число: "))
+    except ValueError:
+        c = int(input("Введите третье ЧИСЛО: "))
+
+    a1 = abs(a) % 10
+    b1 = abs(b) % 10
+    c1 = abs(c) % 10
+
+    sum = a1+b1+c1
+
+    if sum % 2 == 0:
+        sum1 = abs(sum)%10
+        if sum1 % 2 == 0:
+            print("Число четное")
+        else:
+            print("Число нечетное")
+    else:
+        print("Сумма нечетная")
+
+task4()
