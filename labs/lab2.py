@@ -26,3 +26,25 @@ def task1():
             print("Нацело не делится на 5")
 
 task1()
+
+import numpy as np
+import matplotlib.pyplot as pl
+def task2():
+    def f1(x):
+        return np.sin(x)*np.cos(x)
+    def f2(x):
+        return 2*x**2+x
+    a = (int(input("a: ")))
+    b = (int(input("b: ")))
+    x = np.linspace(a, b, 200)
+    y = []
+    for elem in x:
+        if elem >= 0:
+            y.append(f1(elem))
+        else:
+            y.append(f2(elem))
+    pl.plot(x,y)
+    pl.grid()
+    pl.show()
+
+task2()
