@@ -141,8 +141,11 @@ def task6():
 task6()
 
 def task8():
+    
     from math import factorial
+
     s = 0
+
     try:
         n = int(input("Введите длину последовательности: "))
     except ValueError:
@@ -151,7 +154,9 @@ def task8():
         x = int(input("Введите x: "))
     except ValueError:
         x = int(input("Введите число: "))
+        
     subcount = 0
+
     for count in range(1, n + 1):
         s += (factorial(count)/factorial(subcount+count))*(x**subcount+count)
         subcount += 1
