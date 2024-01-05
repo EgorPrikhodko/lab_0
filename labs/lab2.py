@@ -156,6 +156,7 @@ def task8():
         x = int(input("Введите число: "))
         
     subcount = 0
+    s += x
 
     for count in range(1, n + 1):
         s += (factorial(count)/factorial(subcount+count))*(x**subcount+count)
