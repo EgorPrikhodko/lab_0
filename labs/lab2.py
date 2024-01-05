@@ -139,3 +139,23 @@ def task6():
         a1 = a2
 
 task6()
+
+def task8():
+    from math import factorial
+    s = 0
+    try:
+        n = int(input("Введите длину последовательности: "))
+    except ValueError:
+        n = int(input("Введите число: "))
+    try:
+        x = int(input("Введите x: "))
+    except ValueError:
+        x = int(input("Введите число: "))
+    subcount = 0
+    for count in range(1, n + 1):
+        s += (factorial(count)/factorial(subcount+count))*(x**subcount+count)
+        subcount += 1
+    print(f"Cумма последовательности при x = {x} и длине {n} равна {s}")
+
+task8()
+
