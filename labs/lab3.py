@@ -46,6 +46,8 @@ def task1():
     proverka4(char_array)
     proverka5(char_array)
 
+task1()
+
 def task3():
     with open("output.txt", "w") as file:
         for _ in range(5):
@@ -54,6 +56,3 @@ def task3():
     print("Задача выполнена. Проверьте 'output.txt' на наличие письменного текста.")
 
 task3()
-
-
-task1()
