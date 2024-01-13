@@ -33,7 +33,7 @@ def task1():
         char_array.append(char)
 
     print_char_list(char_array)
-    print()  # To add a newline
+    print()  
 
     symbol = input('Введите символ для proverka1: ')
     proverka1(char_array, symbol)
