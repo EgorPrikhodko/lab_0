@@ -56,3 +56,30 @@ def task3():
     print("Задача выполнена. Проверьте 'output.txt' на наличие письменного текста.")
 
 task3()
+
+import random
+
+def print_string_list(array):
+    for element in array:
+        print(element)
+
+def random_choice(array):
+    return random.choice(array)
+
+def task4():
+    words_array = [
+        "Python", "JavaScript", "GitHub", "Machine Learning",
+        "Social Media", "Artificial Intelligence", "Web Development",
+        "Data Science", "Open Source", "Programming"
+    ]
+
+    print_string_list(words_array)
+
+    input("Чтобы получить случайный элемент массива, нажмите Enter:")
+
+    random_element = random_choice(words_array)
+    print(f"Случайный элемент: {random_element}")
+
+    input("Нажмите Enter для выхода из программы.")
+
+task4()
