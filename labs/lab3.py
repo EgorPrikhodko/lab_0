@@ -46,5 +46,14 @@ def task1():
     proverka4(char_array)
     proverka5(char_array)
 
+def task3():
+    with open("output.txt", "w") as file:
+        for _ in range(5):
+            user_input = input("Введите текст: ")
+            file.write(user_input + '\n')
+    print("Задача выполнена. Проверьте 'output.txt' на наличие письменного текста.")
+
+task3()
+
 
 task1()
