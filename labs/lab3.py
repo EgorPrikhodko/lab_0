@@ -83,3 +83,13 @@ def task4():
     input("Нажмите Enter для выхода из программы.")
 
 task4()
+
+def task5():
+    user_input = input("Введите текст: ")
+
+    with open("task1.out", "w") as file:
+        file.write(user_input)
+
+    print(f"Текст, записанный в 'task1.out': {user_input}")
+
+task5()
