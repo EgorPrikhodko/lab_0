@@ -90,6 +90,63 @@ def task3():
 
 task3()
 
+def task4():
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    def is_point_inside_figure(x, y, point_x, point_y):
+        n = len(x)
+        inside = False
+
+        for i in range(n):
+            j = (i + 1) % n
+            if ((y[i] > point_y) != (y[j] > point_y)) and \
+                    (point_x < (x[j] - x[i]) * (point_y - y[i]) / (y[j] - y[i]) + x[i]):
+                inside = not inside
+
+        if inside:
+            return "Точка находится внутри фигуры"
+        else:
+            return "Точка не находится внутри фигуры"
+
+    x_coordinates_shape1 = [-7, 1, 0, -4, -2, -6, 5]
+    y_coordinates_shape1 = [7, 4, -1, 0, -6, -4, 2]
+
+    x_coordinates_shape2 = [1, -1, 1, 3, 5, 7, 6, 3]
+    y_coordinates_shape2 = [-7, -4, -2, -1, 2, 4, -1, -4]
+
+    test_point_x = float(input("Введите координату X контрольной точки: "))
+    test_point_y = float(input("Введите координату Y контрольной точки: "))
+
+    # Построение обеих фигур и заданной пользователем контрольной точки
+    plt.plot(x_coordinates_shape1 + [x_coordinates_shape1[0]], y_coordinates_shape1 + [y_coordinates_shape1[0]],
+             marker='o', linestyle='-', label='Фигура 1')
+    plt.plot(x_coordinates_shape2 + [x_coordinates_shape2[0]], y_coordinates_shape2 + [y_coordinates_shape2[0]],
+             marker='o', linestyle='-', label='Фигура 2')
+    plt.scatter(test_point_x, test_point_y, color='red', label='Заданная точка')
+
+    # Выделяет выпуклую оболочку каждой фигуры.
+    plt.fill(x_coordinates_shape1 + [x_coordinates_shape1[0]], y_coordinates_shape1 + [y_coordinates_shape1[0]],
+             alpha=0.2)
+    plt.fill(x_coordinates_shape2 + [x_coordinates_shape2[0]], y_coordinates_shape2 + [y_coordinates_shape2[0]],
+             alpha=0.2)
+
+    plt.xlabel('X-ось')
+    plt.ylabel('Y-ось')
+    plt.title('Фигуры с заданной пользователем точкой')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    # Проверяет, находится ли заданная пользователем контрольная точка внутри какой-либо из фигур.
+    result_shape1 = is_point_inside_figure(x_coordinates_shape1, y_coordinates_shape1, test_point_x, test_point_y)
+    result_shape2 = is_point_inside_figure(x_coordinates_shape2, y_coordinates_shape2, test_point_x, test_point_y)
+
+    print(result_shape1)
+    print(result_shape2)
+
+task4()
+
 def task5():
     try:
         a = int(input("Введите первое число: "))
