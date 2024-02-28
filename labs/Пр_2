@@ -1,110 +1,116 @@
-import numpy as np
-import math as m
-import pylab as p
-from PyQt5.QtWidgets import (
-QApplication,
-QLabel,
-QLineEdit,
-QMainWindow,
-QPushButton,
-QVBoxLayout,
-QWidget,
-)
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
 
-# Назначим заголовок окна
-        self.setWindowTitle("График")
+        self.setWindowTitle('График')
+        self.fig = plt.figure()
+        self.canvas = FigureCanvas(self.fig)
 
-# Создание виджетов
-        self.plot_button = QPushButton("Нарисовать график")
-        self.plot_button.clicked.connect(self.plot_data)
-
-# Создание полотна
-        self.canvas = FigureCanvas(plt.figure())
-
-# Создание центрального виджета
-        central_widget = QWidget()
+        cental_widget = QWidget()
         layout = QVBoxLayout()
+        cental_widget.setLayout(layout)
 
-# макет, на который будут добавляться виджеты
-# добавление макета на центральный виджет
-        central_widget.setLayout(layout)
-
-# Добавление виджетов на макет
         layout.addWidget(self.canvas)
 
-# Установка центрального виджета
-        self.setCentralWidget(central_widget)
+        self.setCentralWidget(cental_widget)
 
-        layout.addWidget(self.plot_button)
+        self.plot_button = QPushButton('Нарисовать график')
+        self.plot_button.clicked.connect(self.plot_data)
 
-        self.range_label = QLabel("Диапазон:")
+        self.range_label = QLabel('Диапазон:')
         self.range_start_input = QLineEdit('0')
         self.range_end_input = QLineEdit('1')
 
+        self.add_function_button = QPushButton('Добавить функцию в список')
+        self.function_input = QLineEdit('*Введите функцию для добавление в список*')
+        self.function_widget = QComboBox()
+        self.function_widget.addItems(['x', '2*x', 'x**2', 'x**3'])
+        self.add_function_button.clicked.connect(self.add_function)
+
+        self.point_amount = QLabel('Количество точек на графике:')
+        self.point_input = QLineEdit('50')
+
+        self.clear_button = QPushButton('Очистить график')
+        self.clear_button.clicked.connect(self.clear_plot)
+
+        self.file_button = QPushButton('Сохранить точки в файл')
+        self.file_button.clicked.connect(self.file_save)
+
+        layout.addWidget(self.function_widget)
         layout.addWidget(self.range_label)
         layout.addWidget(self.range_start_input)
         layout.addWidget(self.range_end_input)
-
-        self.function_label = QLabel("Функция:")
-        self.function_input = QLineEdit('x**3')
-
-        layout.addWidget(self.function_label)
+        layout.addWidget(self.point_amount)
+        layout.addWidget(self.point_input)
+        layout.addWidget(self.plot_button)
+        layout.addWidget(self.clear_button)
+        layout.addWidget(self.file_button)
+        layout.addWidget(self.add_function_button)
         layout.addWidget(self.function_input)
 
-        self.points_label = QLabel("Количество точек на грaфике")
-        self.points_input = QLineEdit("50")
-
-        layout.addWidget(self.points_label)
-        layout.addWidget(self.points_input)
-
-    def clear(self):
-        self.clear(self.__init__())
-        self.draw()
-        layout.addWidget(self.clear())
-
-    def plot_data(self):
+    def vectors(self):
         try:
-            expression = self.function_input.text()
-        except ValueError:
-            expression = "x**3"
+            expression = self.function_widget.currentText()
+        except NameError:
+            expression = 'x'
 
         try:
             range_start = float(self.range_start_input.text())
             range_end = float(self.range_end_input.text())
-            points = int(self.points_input.text())
+            points = int(self.point_input.text())
         except ValueError:
             range_start = 0
             range_end = 1
             points = 50
 
-        x = np.linspace(range_start, range_end, points)
-
-# определим словарь функций
         functions = {}
-        exec(f"def f(x): return {expression}", functions)
-        function = functions["f"]
+        exec(f'def f(x): return {expression}', functions)
 
-        y = [function(value) for value in x]
-        plt.plot(x, y)
+        x = np.linspace(range_start, range_end, points)
+        function = functions['f']
+        try:
+            y = [function(value) for value in x]
+        except NameError:
+            y = [value for value in x]
+
+        return x, y
+
+    def plot_data(self):
+
+        x, y = self.vectors()
+        axes = plt.subplot()
+        axes.plot(x, y)
         plt.grid(True)
         plt.xlabel('x')
         plt.ylabel('y')
-        plt.title('Заголовок графика ' + expression)
 
-        # Обновление виджета №0 (виджет с полотном Matplotlib)
         self.centralWidget().layout().itemAt(0).widget().draw()
 
-# Создать приложение QApplication
-app = QApplication([])
+    def clear_plot(self):
+        for ax in self.fig.axes:
+            ax.clear()
+        plt.grid(True)
+        self.canvas.draw()
 
-# Создать окно приложения
+    def file_save(self):
+        x, y = self.vectors()
+        file = open('qwerty.txt', 'w')
+        file.write('x     ' + '  ' + 'y\n')
+        for i in range(len(x)):
+            a, b = map(str, (x[i], y[i]))
+            a, b = a[0:6], b[0:6]
+            if len(a) < 6:
+                a += '0' * (6 - len(a))
+            if len(b) < 6:
+                b += '0' * (6 - len(b))
+            file.write(a + '  ' + b + '\n')
+
+    def add_function(self):
+        text_x = self.function_input.text()
+        self.function_widget.addItems([text_x])
+
+
+app = QApplication([])
 main_window = MainWindow()
 main_window.show()
-
-# Запустить приложение
-app.exec_()
+app.exec()
