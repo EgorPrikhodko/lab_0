@@ -113,15 +113,21 @@ class MainWindow(QMainWindow):
                 b += '0' * (6 - len(b))
             file.write(a + '  ' + b + '\n')
 
-    def add_function(self):
-        text_x = self.function_input.text()
+        def add_function(self):
+        text_x = str(self.function_input.text())
+        RU = str(["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "ф", "ы", "в", "а", "п", "р", "о", "л", "д","ж", "э", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю"])
+        for i in text_x:
+            if i in RU:
+                QMessageBox.warning(self, "Error", f"Неверно введена функция!")
+                text_x = False
+                break
         functions = {}
         try:
             exec(f'def f(x): return {text_x}', functions)
             self.function_widget.addItem(text_x)
+
         except Exception as e:
             QMessageBox.warning(self, "Error", f"Неверно введена функция!: {str(e)}")
-
 
 app = QApplication([])
 main_window = MainWindow()
