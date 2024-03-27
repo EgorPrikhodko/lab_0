@@ -1,0 +1,149 @@
+def plot_data(self):
+    x, y = self.vectors()
+
+    try:
+        point_x = float(self.point_x.text())
+        point_y = float(self.point_y.text())
+    except ValueError:
+        point_x = None
+        point_y = None
+
+    axes = plt.subplot()
+    axes.plot(x, y)
+
+    if point_x is not None and point_y is not None:
+        axes.scatter(point_x, point_y, color=self.get_point_color(point_x, point_y, x, y))
+
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    self.canvas.draw()
+
+def get_point_color(self, point_x, point_y, x_func, y_func):
+    if self.function_widget.currentText():
+        function = self.function_widget.currentText()
+        function_result = eval(function, {'x': point_x, 'x_func': x_func})
+
+        if point_y <= function_result:
+            return 'green'
+        else:
+            return 'red'
+
+    return 'blue'
+
+def plot_data(self):
+    x, y = self.vectors()
+
+    try:
+        point_x = float(self.point_x.text())
+        point_y = float(self.point_y.text())
+    except ValueError:
+        point_x = None
+        point_y = None
+
+    axes = plt.subplot()
+    axes.plot(x, y)
+
+    if point_x is not None and point_y is not None:
+        axes.scatter(point_x, point_y, color=self.get_point_color(point_x, point_y))
+
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    self.canvas.draw()
+
+def get_point_color(self, point_x, point_y):
+    if self.function_widget.currentText():
+        x_func, y_func = self.vectors()
+        function = self.function_widget.currentText()
+        function_result = eval(function, {'x': point_x})
+
+        if point_y <= function_result:
+            return 'green'
+        else:
+            return 'red'
+
+    return 'blue'
+
+def plot_data(self):
+    x, y = self.vectors()
+    try:
+        point_x = float(self.point_x.text())
+        point_y = float(self.point_y.text())
+        x.append(point_x)
+        y.append(point_y)
+    except ValueError:
+        pass
+
+    axes = plt.subplot()
+    axes.plot(x, y)
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+
+    if self.function_widget.currentText():
+        self.plot_da(axes, point_x, point_y)
+
+    self.canvas.draw()
+
+def plot_da(self, axes, point_x, point_y):
+    x_func, y_func = self.vectors()
+    function = self.function_widget.currentText()
+    function_result = eval(function, {'x': point_x})
+
+    if point_y <= function_result:
+        point_color = 'green'
+    else:
+        point_color = 'red'
+
+    axes.scatter(point_x, point_y, color=point_color)
+
+def plot_data(self):
+    x, y = self.vectors()
+
+    try:
+        point_x = float(self.point_x.text())
+        point_y = float(self.point_y.text())
+        x.append(point_x)
+        y.append(point_y)
+    except ValueError:
+        pass
+
+    axes = plt.subplot()
+    axes.plot(x, y)
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    self.canvas.draw()
+
+def plot_dat(self):
+
+    point_x = float(self.point_x.text())
+    point_y = float(self.point_y.text())
+    axes = plt.subplot()
+    axes.scatter(point_x, point_y)
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+
+    self.canvas.draw()
+
+def plot_da(self):
+    point_x = float(self.point_x.text())
+    point_y = float(self.point_y.text())
+
+    x_func, y_func = self.vectors()
+
+    function = self.function_widget.currentText()
+    function_result = eval(function, {'x': point_x})
+    if point_y <= function_result:
+        point_color = 'green'
+    else:
+        point_color = 'red'
+
+    axes = plt.subplot()
+    axes.scatter(point_x, point_y, color=point_color)
+    plt.grid(True)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    self.canvas.draw()
